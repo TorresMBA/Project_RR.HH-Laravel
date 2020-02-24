@@ -1,16 +1,15 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
-Route::get('/', function () {
-    return view('welcome');
-});
+/* Nombre de la ruta ||| y en donde van estar esas rutas=>app/http/controllers/book*/
+Route::get('/', 'Auth\LoginController@validacionLogin');
+
+Route::resource('cargaempleado', 'PestanaController');
+
+//Agrega un nuevo documento
+Route::post('nuevoDocumento/', 'PestanaController@nuevoDocumento')->name('doc.create');
+//Abre el documento(pdf) del empleado selecionado
+Route::get('verDocumento/{ruta}/', 'PestanaController@verDocumento')->name('ver.doc');
+
+Route::post('/login', 'auth\LoginController@login')->name('login');
+Route::post('logout', 'auth\LoginController@logout')->name('logout');
